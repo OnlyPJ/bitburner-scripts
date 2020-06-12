@@ -1,0 +1,18 @@
+target = ["foodnstuff","nectar-net","sigma-cosmetics","hong-fang-tea","max-hardware","phantasy","the-hub","johnson-ortho",
+"summit-uni","I.I.I.I","omega-net","netlink","zb-institute","crush-fitness","CSEC","harakiri-sushi","zer0","silver-helix",
+"avmnite-02h","iron-gym","aevum-police","rothman-uni","catalyst","neo-net","darkweb",
+"zb-institute","aerocorp","galactic-cyber","unitalife","omnia","deltaone","defcomm","univ-energy","icarus","solaris",
+"zeus-med","infocomm","taiyang-digital","nova-med","zb-def","applied-energetics","microdyne","run4theh111z","titan-labs",
+"vitalife","fulcrumtech","stormtech","helios","kuai-gong","4sigma","omnitek","blade","powerhouse-fitness","nwo",
+"clarkinc","b-and-a","ecorp","megacorp","fulcrumassets","The-Cave",];
+for(var i = 0; i < target.length; i++)
+{
+    while(getServerRequiredHackingLevel(target[i]) < getHackingLevel()
+          && getServerMoneyAvailable(target[i]) > 10000000 && getHackTime(target[i]) < 1800)
+    {
+        tprint(target[i]);
+        hack(target[i], { threads: 500 });
+        //run command: run hacktemp.script -t 500
+        
+    }
+}
