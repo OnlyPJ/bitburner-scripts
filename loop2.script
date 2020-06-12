@@ -1,0 +1,53 @@
+target = ["foodnstuff","nectar-net","sigma-cosmetics","hong-fang-tea","max-hardware","phantasy","the-hub","johnson-ortho",
+"summit-uni","I.I.I.I","omega-net","netlink","zb-institute","crush-fitness","CSEC","harakiri-sushi","zer0","silver-helix",
+"avmnite-02h","iron-gym","aevum-police","rothman-uni","catalyst","neo-net"];
+
+bestTarget = target[1];
+compare = "";
+compareTargetScore = 0;
+bestTargetScore = 0;
+
+while(true)
+{
+    //find best target to weaken/grow
+	for(var i = 0; i < target.length - 1; i++)
+	{
+		compare = target[i];
+		bestTargetScore = getServerMaxMoney(bestTarget) / getServerMinSecurityLevel(bestTarget);
+		//tprint("Best Server: " + bestTarget);
+		compareTargetScore = getServerMaxMoney(compare) / getServerMinSecurityLevel(compare);
+		//tprint("Compare Server: " + compare);
+		
+		if(compareTargetScore > bestTargetScore && getServerRequiredHackingLevel(compare) < getHackingLevel())
+		{
+			bestTarget = compare;
+		}	
+	}
+	
+	var hostname = getHostname();
+    serverRam = getServerRam(hostname);
+    var ramUsed = serverRam[1];
+    var ramLeft = serverRam[0] - serverRam[1];
+    var threads = ramLeft;
+
+    if(getServerSecurityLevel(bestTarget) > 20)
+    {
+       // threads = Math.floor(ramLeft / getScriptRam('loop2.script', hostname));
+      //  if(threads < 1)
+       // {
+        //    threads = 1;
+       // }
+    	weaken(bestTarget, {threads: Math.floor(getServerRam(hostname)/getScriptRam('loop2.script'))});
+    }
+    else if (getServerMoneyAvailable(bestTarget) < (getServerMaxMoney(bestTarget)/2) || 
+    getServerMoneyAvailable(bestTarget) > 100000)
+    {
+    //	threads = Math.floor(ramLeft / getScriptRam('loop2.script', hostname));
+    //	 if(threads < 1)
+     //   {
+     //       threads = 1;
+     //   }
+
+    	grow(bestTarget, {threads: Math.floor(getServerRam(hostname)/getScriptRam('loop2.script'))});
+    }
+}
