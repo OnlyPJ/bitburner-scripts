@@ -1,0 +1,34 @@
+//count breachable ports
+var portsAvailable = fileExists("BruteSSH.exe", "home") + fileExists("FTPCrack.exe", "home") + fileExists("RelaySMTP.exe", "home") + fileExists("HTTPWorm.exe", "home") + fileExists("SQLInject.exe", "home");
+
+//populate initial hostnames array
+var hostnames = scan(hostname, true);
+
+//define uniqueness filter for recursive scan
+function unique(item) {
+    return hostnames.indexOf(item) < 0;
+}
+//loop through each hostname in hostnames
+for (var i = 0; i < hostnames.length; i++) {
+    var hostname = hostnames[i];
+    //payload
+        if (getServerNumPortsRequired(hostname) <= portsAvailable) {
+        if (hasRootAccess(hostname) === false) {
+        if (fileExists("BruteSSH.exe", "home")) { brutessh(hostname) }
+        if (fileExists("FTPCrack.exe", "home")) { ftpcrack(hostname) }
+        if (fileExists("RelaySMTP.exe", "home")) { relaysmtp(hostname) }
+        if (fileExists("HTTPWorm.exe", "home")) { httpworm(hostname) }
+        if (fileExists("SQLInject.exe", "home")) { sqlinject(hostname) }
+            nuke(hostname);
+            tprint("nuked " + hostname + ".")}
+        if (hasRootAccess(hostname)) {
+            //recursive scan
+            var newhostnames = scan(hostname, true).filter(unique);
+            var hostnames = hostnames.concat(newhostnames);
+        }
+        
+    
+    }
+    //Do something at the end of the list
+    if (i == hostnames.length - 1) {tprint("All rootable machines rooted.")} 
+}
