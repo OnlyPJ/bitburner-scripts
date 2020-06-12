@@ -1,0 +1,8 @@
+target = ["foodnstuff","nectar-net","sigma-cosmetics","hong-fang-tea","max-hardware","phantasy","the-hub","johnson-ortho",
+"summit-uni","I.I.I.I","omega-net","netlink","zb-institute","crush-fitness","CSEC","harakiri-sushi","zer0","silver-helix",
+"avmnite-02h","iron-gym","aevum-police","rothman-uni","catalyst","neo-net"];
+
+for(var i = 0; i < target.length; i++)
+{
+    killall(target[i]);
+}
