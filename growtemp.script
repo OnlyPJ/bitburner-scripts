@@ -1,0 +1,4 @@
+while(true)
+{
+    grow("omega-net", {threads: 500});
+}
