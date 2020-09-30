@@ -41,6 +41,7 @@ decide how much ram to buy for each based on money available (priority 2)
 
 
 =*= FACTION SCRIPT =*=
+
 used to decide which faction to do jobs for
 
 automate doing hacking contracts, augmentations, field work, etc
